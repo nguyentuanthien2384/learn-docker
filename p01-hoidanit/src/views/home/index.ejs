@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= title %></title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <main class="stage">
+    <section class="card">
+      <div class="statusline">
+        <span class="dot" aria-hidden="true"></span>
+        <span class="statuscode"><%= method %> <%= path %></span>
+        <span class="arrow" aria-hidden="true">&rarr;</span>
+        <span class="statuscode ok">200 OK</span>
+      </div>
+
+      <h1>Hello, World</h1>
+
+      <p class="lede">
+        Trang này được render hoàn toàn trên server &mdash; Express nhận request,
+        controller dựng dữ liệu, và EJS trả về HTML này trước khi trình duyệt
+        chạy một dòng JavaScript nào.
+      </p>
+
+      <div class="meta">
+        <div class="meta-row">
+          <span class="meta-label">stack</span>
+          <span class="meta-value">Express, EJS, kiến trúc MVC</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">render</span>
+          <span class="meta-value">phía server</span>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <span>Tác giả</span>
+      <span class="footer-author">Hỏi Dân IT</span>
+      <span class="footer-handle">@hoidanit</span>
+    </footer>
+  </main>
+</body>
+</html>
