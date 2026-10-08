@@ -1,0 +1,25 @@
+interface DockerLogoProps {
+  className?: string
+}
+
+/**
+ * Docker's whale mark ("Moby"), used as the app's brand icon in the header/footer/auth
+ * screen. Kept as a single-color silhouette, matching `public/favicon.svg` exactly so
+ * the tab icon and the in-app logo are the same mark.
+ */
+export function DockerLogo({ className }: DockerLogoProps) {
+  return (
+    <svg viewBox="0 0 32 24" className={className} role="img" aria-label="Docker">
+      <rect x="8" y="10" width="4" height="4" fill="#2496ED" />
+      <rect x="13" y="10" width="4" height="4" fill="#2496ED" />
+      <rect x="18" y="10" width="4" height="4" fill="#2496ED" />
+      <rect x="13" y="5" width="4" height="4" fill="#2496ED" />
+      <rect x="18" y="5" width="4" height="4" fill="#2496ED" />
+      <rect x="23" y="10" width="4" height="4" fill="#2496ED" />
+      <path
+        fill="#2496ED"
+        d="M30.6 11.3c-.9-.6-2.1-.7-3.1-.5-.1-1-.7-1.9-1.5-2.5l-.5-.4-.4.5c-.5.6-.7 1.6-.6 2.4.1.6.3 1.2.7 1.6-.3.2-.6.3-.9.4-.6.2-1.3.3-1.9.3H1.2l-.1.6c-.2 1.4 0 2.9.7 4.2.8 1.5 2.1 2.6 3.6 3.2 1.7.7 3.5.9 5.3.9 7.9 0 13.7-3.6 16.5-10.2 1 0 3.1 0 4.2-2l.3-.5-.5-.3z"
+      />
+    </svg>
+  )
+}

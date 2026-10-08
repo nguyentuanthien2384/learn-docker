@@ -1,0 +1,12 @@
+<header class="head">
+  <h1>Sửa công việc</h1>
+</header>
+
+{{#if error}}<p class="error" role="alert">{{error}}</p>{{/if}}
+
+<form class="add" method="post" action="/todos/{{todo.id}}/update">
+  <label class="sr" for="title">Tên công việc</label>
+  <input id="title" type="text" name="title" value="{{todo.title}}" maxlength="200" required autofocus autocomplete="off">
+  <button class="btn primary">Lưu thay đổi</button>
+  <a class="btn ghost" href="/todos">Hủy</a>
+</form>

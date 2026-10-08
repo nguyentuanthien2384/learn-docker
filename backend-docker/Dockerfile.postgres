@@ -1,0 +1,12 @@
+FROM postgres:17-alpine
+
+# Cấu hình biến môi trường mặc định để tự động tạo Database và User khi khởi tạo
+ENV POSTGRES_USER=hoidanit
+ENV POSTGRES_PASSWORD=123456
+ENV POSTGRES_DB=dockersnippet
+
+# Mở cổng 5432 cho kết nối database
+EXPOSE 5432
+
+# docker build -f Dockerfile.postgres -t postgres-snippet .
+# docker run -d --name postgres-db -p 5432:5432 postgres-snippet

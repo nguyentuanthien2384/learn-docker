@@ -1,0 +1,56 @@
+<header class="head">
+  <h1>Việc cần làm</h1>
+  <p class="meta">{{summary}}</p>
+</header>
+
+{{#if error}}<p class="error" role="alert">{{error}}</p>{{/if}}
+
+<form class="add" method="post" action="/todos">
+  <label class="sr" for="title">Tên công việc</label>
+  <input id="title" type="text" name="title" placeholder="Hôm nay bạn cần làm gì?" maxlength="200" required autofocus autocomplete="off">
+  <button class="btn primary">Thêm việc</button>
+</form>
+
+{{#if todos.length}}
+<ul class="list">
+  {{#each todos}}
+  <li class="item{{#if completed}} done{{/if}}">
+    <form method="post" action="/todos/{{id}}/toggle">
+      <button class="check" aria-label="{{#if completed}}Đánh dấu chưa xong{{else}}Đánh dấu đã xong{{/if}}" aria-pressed="{{completed}}"></button>
+    </form>
+    <span class="title">{{title}}</span>
+    <div class="actions">
+      <a class="btn ghost" href="/todos/{{id}}/edit" data-edit data-id="{{id}}" data-title="{{title}}">Sửa</a>
+      <button type="button" class="btn danger" data-delete data-id="{{id}}" data-title="{{title}}">Xóa</button>
+    </div>
+  </li>
+  {{/each}}
+</ul>
+{{else}}
+<p class="empty">Chưa có việc nào. Nhập công việc đầu tiên vào ô phía trên rồi bấm Thêm việc.</p>
+{{/if}}
+
+<dialog id="edit-dialog" class="modal" aria-labelledby="edit-heading">
+  <form method="post" id="edit-form">
+    <h2 id="edit-heading">Sửa công việc</h2>
+    <label class="sr" for="edit-title">Tên công việc</label>
+    <input id="edit-title" type="text" name="title" maxlength="200" required autocomplete="off">
+    <div class="modal-actions">
+      <button type="button" class="btn ghost" data-close>Hủy</button>
+      <button class="btn primary">Lưu thay đổi</button>
+    </div>
+  </form>
+</dialog>
+
+<dialog id="delete-dialog" class="modal" aria-labelledby="delete-heading">
+  <form method="post" id="delete-form">
+    <h2 id="delete-heading">Xóa công việc này?</h2>
+    <p class="modal-text" id="delete-title"></p>
+    <div class="modal-actions">
+      <button type="button" class="btn ghost" data-close>Giữ lại</button>
+      <button class="btn danger solid">Xóa việc này</button>
+    </div>
+  </form>
+</dialog>
+
+<script src="/app.js"></script>

@@ -1,0 +1,192 @@
+@import "tailwindcss";
+
+/* Dark mode is opt-in via a `data-theme="dark"` attribute on <html>, toggled by ThemeProvider. */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+@theme {
+  --font-sans: "IBM Plex Sans", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  --color-bg: var(--sv-bg);
+  --color-hdr: var(--sv-hdr);
+  --color-panel: var(--sv-panel);
+  --color-panel2: var(--sv-panel2);
+  --color-code: var(--sv-code);
+
+  --color-bd: var(--sv-bd);
+  --color-bd2: var(--sv-bd2);
+  --color-bd3: var(--sv-bd3);
+  --color-hov: var(--sv-hov);
+  --color-pill: var(--sv-pill);
+  --color-pill2: var(--sv-pill2);
+  --color-rowbd: var(--sv-rowbd);
+
+  --color-tx: var(--sv-tx);
+  --color-tx2: var(--sv-tx2);
+  --color-tx3: var(--sv-tx3);
+  --color-mut: var(--sv-mut);
+  --color-mut2: var(--sv-mut2);
+  --color-mut3: var(--sv-mut3);
+
+  --color-acc: var(--sv-acc);
+  --color-acc-ink: var(--sv-acc-ink);
+  --color-acc-s1: var(--sv-acc-s1);
+  --color-acc-s2: var(--sv-acc-s2);
+  --color-acc-bd: var(--sv-acc-bd);
+
+  --color-vio: var(--sv-vio);
+  --color-vio-ink: var(--sv-vio-ink);
+  --color-vio-tx: var(--sv-vio-tx);
+  --color-vio-s1: var(--sv-vio-s1);
+  --color-vio-s2: var(--sv-vio-s2);
+  --color-vio-bd: var(--sv-vio-bd);
+
+  --color-err: var(--sv-err);
+  --color-err-bg: var(--sv-err-bg);
+  --color-err-bd: var(--sv-err-bd);
+  --color-warn: var(--sv-warn);
+}
+
+:root {
+  --sv-bg: #fbfaf7;
+  --sv-hdr: rgba(251, 250, 247, 0.86);
+  --sv-panel: #ffffff;
+  --sv-panel2: #f4f4f0;
+  --sv-code: #fafaf7;
+  --sv-bgfx: radial-gradient(900px 520px at 12% -8%, rgba(10, 143, 104, 0.1), transparent 62%),
+    radial-gradient(760px 480px at 92% 2%, rgba(91, 63, 212, 0.1), transparent 60%),
+    radial-gradient(700px 600px at 50% 110%, rgba(91, 63, 212, 0.05), transparent 65%);
+  --sv-grad: linear-gradient(135deg, #0a8f68 0%, #1e90a8 48%, #5b3fd4 100%);
+  --sv-grad-soft: linear-gradient(135deg, rgba(10, 143, 104, 0.12), rgba(91, 63, 212, 0.12));
+  --sv-glow: 0 6px 20px -9px rgba(10, 143, 104, 0.55), 0 2px 10px -5px rgba(91, 63, 212, 0.45);
+  --sv-bd: #e6e6e0;
+  --sv-bd2: #dcdcd5;
+  --sv-bd3: #b7b7ad;
+  --sv-rowbd: #eeeee9;
+  --sv-hov: #f5f5f2;
+  --sv-pill: #eeeee9;
+  --sv-pill2: #e7e7e1;
+  --sv-tx: #1a1d21;
+  --sv-tx2: #32373e;
+  --sv-tx3: #3a4048;
+  --sv-mut: #575e67;
+  --sv-mut2: #616871;
+  --sv-mut3: #767d85;
+  --sv-acc: #0a8f68;
+  --sv-acc-ink: #ffffff;
+  --sv-acc-s1: rgba(10, 143, 104, 0.11);
+  --sv-acc-s2: rgba(10, 143, 104, 0.08);
+  --sv-acc-bd: rgba(10, 143, 104, 0.38);
+  --sv-sel: rgba(10, 143, 104, 0.2);
+  --sv-vio: #5b3fd4;
+  --sv-vio-ink: #ffffff;
+  --sv-vio-tx: #43309f;
+  --sv-vio-s1: rgba(91, 63, 212, 0.11);
+  --sv-vio-s2: rgba(91, 63, 212, 0.07);
+  --sv-vio-bd: rgba(91, 63, 212, 0.32);
+  --sv-err: #b42318;
+  --sv-err-bg: rgba(180, 35, 24, 0.08);
+  --sv-err-bd: rgba(180, 35, 24, 0.3);
+  --sv-warn: #8a5a00;
+}
+
+[data-theme="dark"] {
+  --sv-bg: #0a0b0f;
+  --sv-hdr: rgba(10, 11, 15, 0.86);
+  --sv-panel: #101219;
+  --sv-panel2: #14161e;
+  --sv-code: #0c0e14;
+  --sv-bgfx: radial-gradient(900px 520px at 12% -8%, rgba(53, 208, 161, 0.14), transparent 62%),
+    radial-gradient(760px 480px at 92% 2%, rgba(139, 124, 255, 0.16), transparent 60%),
+    radial-gradient(700px 600px at 50% 110%, rgba(139, 124, 255, 0.07), transparent 65%);
+  --sv-grad: linear-gradient(135deg, #35d0a1 0%, #52c9d8 46%, #8b7cff 100%);
+  --sv-grad-soft: linear-gradient(135deg, rgba(53, 208, 161, 0.16), rgba(139, 124, 255, 0.16));
+  --sv-glow: 0 6px 22px -8px rgba(53, 208, 161, 0.55), 0 2px 10px -4px rgba(139, 124, 255, 0.45);
+  --sv-bd: #1e232b;
+  --sv-bd2: #252b33;
+  --sv-bd3: #39414c;
+  --sv-rowbd: #171b21;
+  --sv-hov: #14181e;
+  --sv-pill: #1d2229;
+  --sv-pill2: #242a32;
+  --sv-tx: #e6e9ee;
+  --sv-tx2: #c3cad4;
+  --sv-tx3: #c5ccd6;
+  --sv-mut: #8b949e;
+  --sv-mut2: #7c8592;
+  --sv-mut3: #5c6571;
+  --sv-acc: #35d0a1;
+  --sv-acc-ink: #07110d;
+  --sv-acc-s1: rgba(53, 208, 161, 0.13);
+  --sv-acc-s2: rgba(53, 208, 161, 0.09);
+  --sv-acc-bd: rgba(53, 208, 161, 0.35);
+  --sv-sel: rgba(53, 208, 161, 0.28);
+  --sv-vio: #a394ff;
+  --sv-vio-ink: #0b0720;
+  --sv-vio-tx: #b9aeff;
+  --sv-vio-s1: rgba(139, 124, 255, 0.16);
+  --sv-vio-s2: rgba(139, 124, 255, 0.09);
+  --sv-vio-bd: rgba(139, 124, 255, 0.34);
+  --sv-err: #ff9b9b;
+  --sv-err-bg: rgba(255, 107, 107, 0.1);
+  --sv-err-bd: rgba(255, 107, 107, 0.32);
+  --sv-warn: #d9a441;
+}
+
+body {
+  margin: 0;
+  background: var(--sv-bg);
+  background-image: var(--sv-bgfx);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--sv-tx);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--sv-acc);
+  text-decoration: none;
+}
+a:hover {
+  filter: brightness(1.15);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--sv-bd3) var(--sv-panel2);
+}
+
+::-webkit-scrollbar {
+  width: 11px;
+  height: 11px;
+  background: var(--sv-panel2);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--sv-bd3);
+  border-radius: 999px;
+  border: 3px solid var(--sv-panel2);
+}
+
+::selection {
+  background: var(--sv-sel);
+}
+
+.bg-grad {
+  background-image: var(--sv-grad);
+}
+
+.bg-grad-soft {
+  background-image: var(--sv-grad-soft);
+}
+
+.bg-grad-vio-acc {
+  background-image: linear-gradient(135deg, var(--sv-vio), var(--sv-acc));
+}
+
+.shadow-glow {
+  box-shadow: var(--sv-glow);
+}

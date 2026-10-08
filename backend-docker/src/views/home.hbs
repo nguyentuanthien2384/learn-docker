@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="vi">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Backend Docker @hoidanit</title>
+  <meta name="description"
+    content="SnippetVerse: kho lưu và chia sẻ đoạn mã Docker và prompt AI. Backend NestJS, TypeORM, PostgreSQL.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="/home.css">
+</head>
+
+<body>
+  <header class="top">
+    <a class="brand" href="/">@hoidanit</a>
+    <nav aria-label="Điều hướng chính">
+      <a href="/" aria-current="page">Trang chủ</a>
+      <a href="/todos">Todos</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="yard" aria-labelledby="yard-title">
+      <h1 id="yard-title">04 nhóm API</h1>
+      <ul class="containers">
+        <li class="box teal">
+          <span class="mark">/api/auth</span>
+          <h3>Xác thực</h3>
+          <p>Đăng ký, đăng nhập, làm mới token qua cookie, đăng xuất và lấy hồ sơ hiện tại.</p>
+        </li>
+        <li class="box red">
+          <span class="mark">/api/snippets</span>
+          <h3>Snippet</h3>
+          <p>Tạo, sửa, xóa snippet loại docker_code hoặc ai_prompt. Có tìm kiếm, lọc và gắn sao.</p>
+        </li>
+        <li class="box mustard">
+          <span class="mark">/api/tags</span>
+          <h3>Thẻ</h3>
+          <p>Chuẩn hóa tên thẻ và gợi ý những thẻ được dùng nhiều nhất.</p>
+        </li>
+        <li class="box slate">
+          <span class="mark">/api/users</span>
+          <h3>Người dùng</h3>
+          <p>Xem và cập nhật hồ sơ, tải ảnh đại diện lên dưới dạng file webp.</p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="stack" aria-labelledby="stack-title">
+      <h2 id="stack-title">Công nghệ sử dụng</h2>
+      <dl>
+        <div>
+          <dt>NestJS</dt>
+          <dd>Khung ứng dụng, chia module theo tính năng.</dd>
+        </div>
+        <div>
+          <dt>TypeORM</dt>
+          <dd>Ánh xạ entity sang bảng, khớp với schema.</dd>
+        </div>
+        <div>
+          <dt>PostgreSQL</dt>
+          <dd>Cơ sở dữ liệu chính. Tắt DB_ENABLED để chạy chế độ offline với dữ liệu mẫu.</dd>
+        </div>
+        <div>
+          <dt>Docker</dt>
+          <dd>Dockerfile cho ứng dụng và cho Postgres, sẵn sàng đóng gói.</dd>
+        </div>
+      </dl>
+    </section>
+  </main>
+
+  <footer>
+    Khóa Học Docker và AI - Tác giả Hỏi Dân IT @hoidanit
+  </footer>
+</body>
+
+</html>
