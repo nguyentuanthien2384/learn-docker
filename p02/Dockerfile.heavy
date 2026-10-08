@@ -1,0 +1,23 @@
+# ==========================================
+# VERSION NẶNG: một giai đoạn duy nhất
+# Image cuối chứa toàn bộ Go toolchain + mã nguồn (~250MB+)
+# ==========================================
+FROM golang:1.22.5
+
+WORKDIR /app
+
+COPY main.go .
+
+RUN go mod init demo-app
+RUN go build -o myapp main.go
+
+EXPOSE 8080
+
+CMD ["./myapp"]
+
+
+# chạy
+# docker build -f Dockerfile.heavy -t demo-heavy .
+# docker run -p 8081:8080 demo-heavy
+
+# docker images | findstr demo
