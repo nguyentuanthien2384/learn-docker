@@ -1,0 +1,65 @@
+name: nopiko-full-apps
+services:
+  frontend:
+    build:
+      context: ../../frontend-docker
+      dockerfile: Dockerfile
+    container_name: p01-frontend
+    image: p01-nopiko-frontend
+    restart: unless-stopped
+    ports:
+      - "4173:80"
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: ../../backend-docker
+      dockerfile: Dockerfile.simple
+    container_name: p02-backend
+    image: p02-nopiko-backend
+    volumes:
+      - todos-data-cp:/hoidanit-app/dist/todos/data
+    ports:
+      - "3000:3000"
+    environment:
+      DB_ENABLED: true
+      DB_HOST: database
+      DB_PORT: 5432
+      DB_USERNAME: nopiko
+      DB_PASSWORD: 123456
+      DB_DATABASE: dockersnippet
+    depends_on:
+      - database
+
+  database:
+    container_name: postgres-db
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: nopiko
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DB: dockersnippet
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  pgadmin:
+    image: dpage/pgadmin4:9.18
+    container_name: pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@hoidanit.vn
+      PGADMIN_DEFAULT_PASSWORD: 123456
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+    ports:
+      - "5050:80"
+    depends_on:
+      - database
+
+volumes:
+  todos-data-cp:
+  postgres-data:
+  pgadmin-data:
+
+# docker compose -f docker-compose.full.yaml up -d --build
