@@ -6,7 +6,7 @@ FROM node:24-alpine AS builder
 WORKDIR /hoidanit-app
 
 # Cache layer dependencies
-COPY package*.json ./
+COPY package*.json .npmrc ./
 
 # Cài đặt dependencies (bao gồm cả devDependencies) để build (xóa node_modules cũ nếu có)
 RUN npm ci
@@ -26,7 +26,7 @@ ENV NODE_ENV=production
 ENV PORT=3000
 
 # Chỉ cài đặt dependencies cần thiết cho runtime (bỏ qua devDependencies)
-COPY package*.json ./
+COPY package*.json .npmrc ./
 RUN npm ci --omit=dev && npm cache clean --force
 
 # Copy artifact dist từ stage builder
@@ -44,11 +44,31 @@ EXPOSE 3000
 # Lệnh khởi động ứng dụng dạng exec (node là PID 1 để bắt đúng SIGTERM)
 CMD ["node", "dist/main.js"]
 
-# nếu bạn muốn xóa image + container không dùng: 
+# nếu bạn muốn xóa image + container không dùng:
 # docker system prune -af
 
-# docker build -f Dockerfile.simple -t p02-hoidanit-backend .
-# docker run -d --name p02-backend -p 3000:3000 -e DB_ENABLED=false p02-hoidanit-backend
+# docker build -f Dockerfile.simple -t p02-nopiko-backend .
+# docker run -d --name p02-backend -p 3000:3000 -e DB_ENABLED=false p02-nopiko-backend
 
 
+# dùng volume
+# docker volume create todos-data
+# docker run -d --name p02-backend -p 3000:3000 -e DB_ENABLED=false -v todos-data:/nopiko-app/dist/todos/data p02-nopiko-backend
+
+
+# dùng bind mount (chỉ dùng cho dev, kh dùng cho prod)
+# docker run -d --name p02-backend -p 3000:3000 -e DB_ENABLED=false -v /path/to/local/data:/app/data image-name
+# docker run -d --name p02-backend -p 3000:3000 -e DB_ENABLED=false -v "${pwd}/src/todos/data:/nopiko-app/dist/todos/data" p02-nopiko-backend
+
+
+
+# docker run -d --name p02-backend -p 3000:3000 -e DB_ENABLED=true p02-nopiko-backend
+
+# docker network create p02-network
+
+
+
+# Build và chạy backend trong cùng network.
+# docker build -f Dockerfile.simple -t p02-nopiko-backend .
+# docker run -d --name p02-backend --network p02-network -p 3000:3000 -e DB_ENABLED=true -e DB_HOST=postgres-db p02-nopiko-backend
 

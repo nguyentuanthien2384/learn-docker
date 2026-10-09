@@ -1,7 +1,7 @@
 FROM postgres:17-alpine
 
 # Cấu hình biến môi trường mặc định để tự động tạo Database và User khi khởi tạo
-ENV POSTGRES_USER=hoidanit
+ENV POSTGRES_USER=nopiko
 ENV POSTGRES_PASSWORD=123456
 ENV POSTGRES_DB=dockersnippet
 
