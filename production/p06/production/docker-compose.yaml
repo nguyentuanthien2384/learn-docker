@@ -1,0 +1,26 @@
+name: hoidanit-backend-compose
+services:
+  backend:
+    build:
+      context: ../02-backend-docker-hoidanit-master
+      dockerfile: Dockerfile
+    container_name: p02-backend 
+    image: p02-hoidanit-backend
+    volumes:
+      - todos-data-cp:/hoidanit-app/dist/todos/data
+    ports:
+      - "3000:3000"
+    environment:
+      DB_ENABLED: true
+      DB_HOST: database
+  database:
+    container_name: postgres-db
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: hoidanit
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DB: dockersnippet
+volumes:
+  todos-data-cp:
+
+# docker compose up -d

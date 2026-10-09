@@ -1,0 +1,14 @@
+name: nopiko-backend-compose
+services:
+  backend:
+    build:
+      context: ../../backend-docker
+      dockerfile: Dockerfile.simple
+    pull_policy: build
+    container_name: p03-backend
+    image: p03-nopiko-backend
+    ports:
+      - "3000:3000"
+    environment:
+      DB_ENABLED: "false"
+# docker compose up -d
